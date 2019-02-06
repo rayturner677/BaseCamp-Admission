@@ -1,3 +1,4 @@
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -42,6 +43,7 @@ public class Application {
         System.out.println("10 of 11 completed");
         getElements();
         System.out.println("11 of 11 completed");
+        writeToFile();
     }
 
     public String getName(){
@@ -154,5 +156,16 @@ public class Application {
         System.out.println("Current plan to do after you graduate if it were not for Base Camp?");
         System.out.println("You will be asked about your aptitude, dedication, work ethic, heart, or passion.");
         System.out.println("");
+    }
+
+    public void writeToFile(){
+        try{
+            String string = nomineeName + nomineeAge + nomineeEmail + nomineeGraduationDate + nomineeSchoolAttend;
+            FileWriter writer = new FileWriter("src/applications/"+nomineeName+".txt");
+            writer.write(string);
+            writer.close();
+        }catch(Exception ex){
+            ex.printStackTrace();
+        }
     }
 }

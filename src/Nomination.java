@@ -21,10 +21,15 @@ public class Nomination {
     private void nominatorInfo() {
         System.out.println("The following section will be about you the Nominator.");
         nominatorName = getName();
+        System.out.println("1 of 5 completed");
         nominatorEmail = getEmail();
+        System.out.println("2 of 5 completed");
         nominatorSchoolDistrict = getDistrict();
+        System.out.println("3 of 5 completed");
         nominatorPosition = getPosition();
+        System.out.println("4 of 5 completed");
         nominatorRelation = getRelation();
+        System.out.println("5 of 5 completed");
     }
 
     public String getPosition() {
@@ -106,4 +111,15 @@ public class Nomination {
         return relation;
     }
 
+    public void viewNominationQuestions() {
+        System.out.println("Enter your position in your district: ");
+        System.out.println("Enter graduation date: ");
+        System.out.println("Enter Age: ");
+        System.out.println("Enter Name: ");
+        System.out.println("Enter email: ");
+        System.out.println("Enter you school district: ");
+        System.out.println("Enter you relation to the nominee: ");
+        System.out.println("Comments about the student's aptitude, perseverance, dedication, and the work ethic of the student. ");
+        System.out.println();
+    }
 }

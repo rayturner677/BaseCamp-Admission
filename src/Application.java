@@ -21,16 +21,27 @@ public class Application {
     private void nomineeInfo(){
         System.out.println("The following section will be about the Nominee.");
         nomineeName = getName();
+        System.out.println("1 of 11 completed");
         nomineeEmail = getEmail();
+        System.out.println("2 of 11 completed");
         nomineeSchoolAttend = getSchoolAttend();
+        System.out.println("3 of 11 completed");
         isNomineeSenior = getIsSenior();
+        System.out.println("4 of 11 completed");
         isNomineeNominated = getIsNominated();
+        System.out.println("5 of 11 completed");
         isNomineeDrivingDistance = getDrivingDistance();
+        System.out.println("6 of 11 completed");
         nomineeAge = getAge();
+        System.out.println("7 of 11 completed");
         nomineeNumber = getNumber();
+        System.out.println("8 of 11 completed");
         nomineeGraduationDate = getGraduationDate();
+        System.out.println("9 of 11 completed");
         nomineeCurrentPlan = getCurrentPlan();
+        System.out.println("10 of 11 completed");
         getElements();
+        System.out.println("11 of 11 completed");
     }
 
     public String getName(){
@@ -130,5 +141,18 @@ public class Application {
         System.out.println("Passion/ Persistence: \nPlease tell us about something you are passionate about and have worked hard to achieve. This can be clubs, sports teams, hobbies, church groups, etc. ");
         String answer3 = input.nextLine();
         threeElements.add(answer3);
+    }
+
+    public void viewApplicationQuestions(){
+        System.out.println("School you currently attend: ");
+        System.out.println("Phone Number: ");
+        System.out.println("Enter graduation date: ");
+        System.out.println("Enter Age: ");
+        System.out.println("Enter Name: ");
+        System.out.println("Enter email: ");
+        System.out.println("Enter you school district: ");
+        System.out.println("Current plan to do after you graduate if it were not for Base Camp?");
+        System.out.println("You will be asked about your aptitude, dedication, work ethic, heart, or passion.");
+        System.out.println("");
     }
 }

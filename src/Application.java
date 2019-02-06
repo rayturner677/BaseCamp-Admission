@@ -121,17 +121,14 @@ public class Application {
     public void getElements(){
         System.out.println("Aptitude: \nPlease share a specific example of when you were a strong problem solver. ");
         String answer1 = input.nextLine();
-        System.out.println(answer1);
         threeElements.add(answer1);
 
         System.out.println("Dedication/ Work Ethic/ Heart: \nPlease share a specific example of your dedication and work ethic. ");
         String answer2 = input.nextLine();
-        System.out.println(answer2);
         threeElements.add(answer2);
 
         System.out.println("Passion/ Persistence: \nPlease tell us about something you are passionate about and have worked hard to achieve. This can be clubs, sports teams, hobbies, church groups, etc. ");
         String answer3 = input.nextLine();
-        System.out.println(answer3);
         threeElements.add(answer3);
     }
 }

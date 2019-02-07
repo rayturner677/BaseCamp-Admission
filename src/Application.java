@@ -1,4 +1,4 @@
-import java.io.FileWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -165,6 +165,19 @@ public class Application {
             writer.write(string);
             writer.close();
         }catch(Exception ex){
+            ex.printStackTrace();
+        }
+    }
+    public void readFromFile(String currentStudent) {
+        try {
+            File file = new File("src/applications/" + currentStudent + ".txt");
+            BufferedReader data = new BufferedReader(new FileReader(file));
+            String str;
+
+            while((str = data.readLine()) != null ){
+                System.out.println(str);
+            }data.close();
+        } catch (IOException ex) {
             ex.printStackTrace();
         }
     }

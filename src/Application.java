@@ -1,4 +1,5 @@
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +11,9 @@ public class Application {
     public Boolean isNomineeSenior;
     public Boolean isNomineeNominated;
     public Boolean isNomineeDrivingDistance;
+    public  String nomineeSeniorResponse;
+    public String nomineeNominatedResponse;
+    public  String nomineeDistanceResponse;
     public String nomineeAge;
     public String nomineeNumber;
     public String nomineeGraduationDate;
@@ -43,6 +47,9 @@ public class Application {
         System.out.println("10 of 11 completed");
         getElements();
         System.out.println("11 of 11 completed");
+        nomineeSeniorResponse = getSeniorResponse();
+        nomineeNominatedResponse = getNominatedResponse();
+        nomineeDistanceResponse = getNomineeDistanceResponse();
         writeToFile();
     }
 
@@ -154,18 +161,43 @@ public class Application {
         System.out.println("Enter email: ");
         System.out.println("Enter you school district: ");
         System.out.println("Current plan to do after you graduate if it were not for Base Camp?");
-        System.out.println("You will be asked about your aptitude, dedication, work ethic, heart, or passion.");
-        System.out.println("");
+        System.out.println("You will be asked about your aptitude, dedication, work ethic, heart, and passion.");
     }
 
+    public String getSeniorResponse() {
+        if (isNomineeSenior.equals(true)){
+            return "I am a high school senior";
+        } else {
+            return "I am not a high school senior";
+        }
+    }
+    public String getNominatedResponse() {
+        if (isNomineeNominated.equals(true)){
+            return "I have been nominated";
+        } else {
+            return "I have not been nominated";
+        }
+    }
+    public String getNomineeDistanceResponse() {
+        if (isNomineeDrivingDistance.equals(true)){
+            return "I live within driving distance of Water Valley, MS";
+        } else {
+            return "I do not live within driving distance of Water Valley, MS";
+        }
+    }
     public void writeToFile(){
         try{
-            String string = nomineeName + nomineeAge + nomineeEmail + nomineeGraduationDate + nomineeSchoolAttend;
+            String basicInfoString = "Applicant Info:\nName: "+nomineeName+"\nEmail Address: " + nomineeEmail  +"\nSchool Attending: "+ nomineeSchoolAttend;
+            String eligibilityString ="\nHigh School Senior: "+nomineeSeniorResponse+"\nNominated: "+nomineeNominatedResponse+"\nLives in driving distance: "+nomineeDistanceResponse;
+            String inDepthInfoString = "\nAge:" + nomineeAge +"\nPhone Number: "+nomineeNumber +"\nGraduation Date:"+ nomineeGraduationDate+"\nAlternate Plan: "+nomineeCurrentPlan;
+            String threeElementString = "\nAptitude:\n"+threeElements.get(0)+"\nDedication/ Work Ethic/ Heart:\n"+threeElements.get(1)+"\nPassion/ Persistence:\n"+threeElements.get(2)+"\n";
+            String string = basicInfoString+eligibilityString+inDepthInfoString+threeElementString;
             FileWriter writer = new FileWriter("src/applications/"+nomineeName+".txt");
             writer.write(string);
             writer.close();
-        }catch(Exception ex){
-            ex.printStackTrace();
+        }catch(IOException ex){
+            // Commented out for development ex.printStackTrace();
+            System.out.println("File or Folder not found!");
         }
     }
 }

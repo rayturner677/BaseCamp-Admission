@@ -168,6 +168,7 @@ public class Application {
             ex.printStackTrace();
         }
     }
+
     public void readFromFile(String currentStudent) {
         try {
             File file = new File("src/applications/" + currentStudent + ".txt");

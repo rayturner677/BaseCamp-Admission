@@ -1,3 +1,5 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -16,6 +18,7 @@ public class Nomination {
     public void runner() {
         nominatorInfo();
         nomineeInfo();
+        writeToFile();
     }
 
     private void nominatorInfo() {
@@ -49,6 +52,7 @@ public class Nomination {
             System.out.println("[1] -- to make a comment\n[2] -- to not make a comment");
             String choice = input.nextLine();
             if (choice.equals("1")){
+                System.out.println("Enter comment: ");
                 extraComments = input.nextLine();
             } else if(choice.equals("2")){
                 System.out.println("No comment made!");
@@ -121,5 +125,21 @@ public class Nomination {
         System.out.println("Enter you relation to the nominee: ");
         System.out.println("Comments about the student's aptitude, perseverance, dedication, and the work ethic of the student. ");
         System.out.println();
+    }
+
+    public void writeToFile(){
+        try{
+            String nominatorInfoString = "Nominator Info:\nName: "+nominatorName+"\nEmail Address: " + nominatorEmail  +"\nSchool District: "+ nominatorSchoolDistrict+"\nPosition: "+nominatorPosition+"\nRelation to Nominee: "+nominatorRelation;
+            String nomineeInfoString = "\nNominee Info\nName:" + nomineeName+"\nAge: "+nomineeAge +"\nGraduation Date:"+ nomineeGraduationDate;
+            String fourElementString = "\nAptitude:\n"+fourElements.get(0)+"\nPerseverance:\n"+fourElements.get(1)+"\nDedication:\n"+fourElements.get(2)+"\nWork Ethic / Heart:\n"+fourElements.get(3);
+            String commentString = "\nExtra Comments(can be blank):\n"+extraComments;
+            String string = nominatorInfoString+nomineeInfoString+fourElementString+commentString;
+            FileWriter writer = new FileWriter("src/nominations/"+nomineeName+".txt");
+            writer.write(string);
+            writer.close();
+        }catch(IOException ex){
+            // Commented out for development ex.printStackTrace();
+            System.out.println("File or Folder not found!");
+        }
     }
 }

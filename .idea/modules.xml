@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/BaseCamp-Admission.iml" filepath="$PROJECT_DIR$/BaseCamp-Admission.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/first_java_project.iml" filepath="$PROJECT_DIR$/first_java_project.iml" />
+>>>>>>> 0f0b92296e0d7ea909df5c98be3868bd46f0736b
     </modules>
   </component>
 </project>

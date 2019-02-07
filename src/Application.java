@@ -1,5 +1,4 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -198,6 +197,21 @@ public class Application {
         }catch(IOException ex){
             // Commented out for development ex.printStackTrace();
             System.out.println("File or Folder not found!");
+        }
+    }
+
+    public void readFromFile(String currentStudent) {
+        try{
+            File file = new File("src/applications" + currentStudent + ".txt");
+
+            BufferedReader data = new BufferedReader(new FileReader(file));
+
+            String str;
+            while ((str = data.readLine()) != null)
+                System.out.println(str);
+        }
+        catch (IOException ex){
+            ex.printStackTrace();
         }
     }
 }

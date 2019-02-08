@@ -31,9 +31,22 @@ public class Internal {
 
             } else if (choice.equals("4")) {
                 System.out.println("Which student would you like to view? ");
-                Scanner input3 = new Scanner(System.in);
-                var currentStudent = input3.nextLine();
+                var currentStudent = input.nextLine();
                 app.readFromFile(currentStudent);
+                var nomChoice = true;
+                while (nomChoice) {
+                    System.out.println("[1]-- to view nomination\n[2]-- to continue on");
+                    var choice2 = input.nextLine();
+                    if (choice2.equals("1")){
+                        nom.nomReader(currentStudent);
+                        nomChoice = false;
+                    } else if (choice2.equals("2")){
+                        nomChoice = false;
+                    } else {
+                        System.out.println("Invalid input");
+                    }
+                }
+
             } else if (choice.equals("5")) {
                 System.out.println("Have a good day!");
                 System.exit(0);

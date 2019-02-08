@@ -3,21 +3,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-    public Scanner input = new Scanner(System.in);
-    public String nomineeName;
-    public String nomineeEmail;
-    public String nomineeSchoolAttend;
-    public Boolean isNomineeSenior;
-    public Boolean isNomineeNominated;
-    public Boolean isNomineeDrivingDistance;
-    public  String nomineeSeniorResponse;
-    public String nomineeNominatedResponse;
-    public  String nomineeDistanceResponse;
-    public String nomineeAge;
-    public String nomineeNumber;
-    public String nomineeGraduationDate;
-    public String nomineeCurrentPlan;
-    public ArrayList<String> threeElements = new ArrayList<String>();
+    private Scanner input = new Scanner(System.in);
+    private String nomineeName;
+    private String nomineeEmail;
+    private String nomineeSchoolAttend;
+    private Boolean isNomineeSenior;
+    private Boolean isNomineeNominated;
+    private Boolean isNomineeDrivingDistance;
+    private  String nomineeSeniorResponse;
+    private String nomineeNominatedResponse;
+    private  String nomineeDistanceResponse;
+    private String nomineeAge;
+    private String nomineeNumber;
+    private String nomineeGraduationDate;
+    private String nomineeCurrentPlan;
+    private ArrayList<String> threeElements = new ArrayList<>();
     public void runner(){
         nomineeInfo();
     }
@@ -38,7 +38,7 @@ public class Application {
         System.out.println("6 of 11 completed");
         nomineeAge = getAge();
         System.out.println("7 of 11 completed");
-        nomineeNumber = getNumber();
+        getNumber();
         System.out.println("8 of 11 completed");
         nomineeGraduationDate = getGraduationDate();
         System.out.println("9 of 11 completed");
@@ -86,10 +86,12 @@ public class Application {
     }
 
     public Boolean getIsNominated(){
+        File file = new File("src/nominations/"+nomineeName+".txt");
+        Boolean exists = file.exists();
         while (true) {
             System.out.println("Are you nominated?\n[1]--YES\n[2]--NO");
             var choice = input.nextLine();
-            if (choice.equals("1")){
+            if (choice.equals("1") && exists.equals(true)){
                 return true;
             } else if (choice.equals("2")) {
                 return false;
@@ -119,14 +121,24 @@ public class Application {
         return age;
     }
 
-    public String getNumber(){
+    public void getNumber(){
+        String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+        System.out.println("Valid Phone Number Formats:\n1234567890\n123-456-7890\n(123)456-7890\n(123)4567890");
+        var statement = true;
+        while (statement) {
         System.out.println("Phone Number: ");
         var number = input.nextLine();
-        return number;
+        if (number.matches(pattern)) {
+            nomineeNumber = number;
+            statement = false;
+        } else {
+            System.out.println("Invalid phone number!");
+        }
+    }
     }
 
     public String getGraduationDate(){
-        System.out.println("Graduation Date: ");
+        System.out.println("Graduation Date (Example: May 2019): ");
         var date= input.nextLine();
         return date;
     }
@@ -202,7 +214,7 @@ public class Application {
 
     public void readFromFile(String currentStudent) {
         try{
-            File file = new File("src/applications" + currentStudent + ".txt");
+            File file = new File("src/applications/" + currentStudent + ".txt");
 
             BufferedReader data = new BufferedReader(new FileReader(file));
 
@@ -211,7 +223,8 @@ public class Application {
                 System.out.println(str);
         }
         catch (IOException ex){
-            ex.printStackTrace();
+//            Commented out for development ex.printStackTrace();
+            System.out.println("Application does not exist");
         }
     }
 }

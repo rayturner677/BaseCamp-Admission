@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Application {
     private Scanner input = new Scanner(System.in);
@@ -26,7 +28,7 @@ public class Application {
         System.out.println("The following section will be about the Nominee.");
         nomineeName = getName();
         System.out.println("1 of 11 completed");
-        nomineeEmail = getEmail();
+        getEmail();
         System.out.println("2 of 11 completed");
         nomineeSchoolAttend = getSchoolAttend();
         System.out.println("3 of 11 completed");
@@ -58,10 +60,20 @@ public class Application {
         return name;
     }
 
-    public String getEmail(){
-        System.out.println("Email: ");
-        var email = input.nextLine();
-        return email;
+    public void getEmail() {
+        var statement = true;
+        while (statement) {
+            System.out.println("Enter email:");
+            var email = input.nextLine();
+            Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+            if (matcher.find()) {
+                nomineeEmail = email;
+                statement = false;
+            } else {
+                System.out.println("Invalid email");
+            }
+        }
     }
 
     public String getSchoolAttend(){

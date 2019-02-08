@@ -3,21 +3,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Application {
-    public Scanner input = new Scanner(System.in);
-    public String nomineeName;
-    public String nomineeEmail;
-    public String nomineeSchoolAttend;
-    public Boolean isNomineeSenior;
-    public Boolean isNomineeNominated;
-    public Boolean isNomineeDrivingDistance;
-    public  String nomineeSeniorResponse;
-    public String nomineeNominatedResponse;
-    public  String nomineeDistanceResponse;
-    public String nomineeAge;
-    public String nomineeNumber;
-    public String nomineeGraduationDate;
-    public String nomineeCurrentPlan;
-    public ArrayList<String> threeElements = new ArrayList<String>();
+    private Scanner input = new Scanner(System.in);
+    private String nomineeName;
+    private String nomineeEmail;
+    private String nomineeSchoolAttend;
+    private Boolean isNomineeSenior;
+    private Boolean isNomineeNominated;
+    private Boolean isNomineeDrivingDistance;
+    private  String nomineeSeniorResponse;
+    private String nomineeNominatedResponse;
+    private  String nomineeDistanceResponse;
+    private String nomineeAge;
+    private String nomineeNumber;
+    private String nomineeGraduationDate;
+    private String nomineeCurrentPlan;
+    private ArrayList<String> threeElements = new ArrayList<>();
     public void runner(){
         nomineeInfo();
     }
@@ -202,7 +202,7 @@ public class Application {
 
     public void readFromFile(String currentStudent) {
         try{
-            File file = new File("src/applications" + currentStudent + ".txt");
+            File file = new File("src/applications/" + currentStudent + ".txt");
 
             BufferedReader data = new BufferedReader(new FileReader(file));
 
@@ -211,7 +211,8 @@ public class Application {
                 System.out.println(str);
         }
         catch (IOException ex){
-            ex.printStackTrace();
+//            Commented out for development ex.printStackTrace();
+            System.out.println("Application does not exist");
         }
     }
 }

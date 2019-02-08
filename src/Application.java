@@ -105,6 +105,8 @@ public class Application {
             var choice = input.nextLine();
             if (choice.equals("1") && exists.equals(true)){
                 return true;
+            }else if (choice.equals("1") && exists.equals(false)){
+                System.out.println("You have not been nominated!");
             } else if (choice.equals("2")) {
                 return false;
             } else {
@@ -127,11 +129,27 @@ public class Application {
         }
     }
 
-    public String getAge(){
+    public String getAge() {
         System.out.println("Age: ");
-        var age= input.nextLine();
-        return age;
+        while (true) {
+            try {
+            var age = input.nextLine();
+
+            var age_num = Integer.parseInt(age);
+            if (age_num >= 16 && age_num <= 21) {
+                return age;
+            }else {
+                System.out.println("Invalid input");
+            }
+            }
+            catch (NumberFormatException ex) {
+                System.out.println("Input must be a number!");
+            }
+        }
     }
+
+
+
 
     public void getNumber(){
         String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";

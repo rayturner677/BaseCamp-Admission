@@ -1,24 +1,35 @@
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Nomination {
-    public Scanner input = new Scanner(System.in);
-    public String nominatorName;
-    public String nominatorEmail;
-    public String nominatorSchoolDistrict;
-    public String nominatorPosition;
-    public String nominatorRelation;
-    public String nomineeName;
-    public String nomineeAge;
-    public String nomineeGraduationDate;
-    public ArrayList<String> fourElements = new ArrayList<String>();
-    public String extraComments = "";
+    private Scanner input = new Scanner(System.in);
+    private String nominatorName;
+    private String nominatorEmail;
+    private String nominatorSchoolDistrict;
+    private String nominatorPosition;
+    private String nominatorRelation;
+    private String nomineeName;
+    private String nomineeAge;
+    private String nomineeGraduationDate;
+    private ArrayList<String> fourElements = new ArrayList<String>();
+    private String extraComments = "";
     public void runner() {
         nominatorInfo();
-        nomineeInfo();
-        writeToFile();
+        var statement = true;
+        while (statement) {
+            System.out.println("[1]-- to nominate\n[2]-- to exit");
+            var choice = input.nextLine();
+            if (choice.equals("1")) {
+                nomineeInfo();
+                writeToFile();
+            } else if (choice.equals("2")) {
+                statement = false;
+            } else {
+                System.out.println("Invalid input");
+            }
+        }
+
     }
 
     private void nominatorInfo() {
@@ -140,6 +151,22 @@ public class Nomination {
         }catch(IOException ex){
             // Commented out for development ex.printStackTrace();
             System.out.println("File or Folder not found!");
+        }
+    }
+
+    public void nomReader(String currentStudent) {
+        try{
+            File file = new File("src/nominations/" + currentStudent + ".txt");
+
+            BufferedReader data = new BufferedReader(new FileReader(file));
+
+            String str;
+            while ((str = data.readLine()) != null)
+                System.out.println(str);
+        }
+        catch (IOException ex){
+//            Commented out for development ex.printStackTrace();
+            System.out.println("Nomination does not exist!");
         }
     }
 }

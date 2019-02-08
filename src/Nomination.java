@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Nomination {
     private Scanner input = new Scanner(System.in);
@@ -36,7 +38,7 @@ public class Nomination {
         System.out.println("The following section will be about you the Nominator.");
         nominatorName = getName();
         System.out.println("1 of 5 completed");
-        nominatorEmail = getEmail();
+        getEmail();
         System.out.println("2 of 5 completed");
         nominatorSchoolDistrict = getDistrict();
         System.out.println("3 of 5 completed");
@@ -108,10 +110,20 @@ public class Nomination {
         return name;
     }
 
-    public String getEmail() {
+    public void getEmail() {
+        var statement = true;
+        while (statement) {
         System.out.println("Enter email:");
         var email = input.nextLine();
-        return email;
+        Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX .matcher(email);
+        if (matcher.find()) {
+            nominatorEmail = email;
+            statement = false;
+        } else {
+            System.out.println("Invalid email");
+        }
+        }
     }
 
     public String getDistrict() {

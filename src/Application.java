@@ -38,7 +38,7 @@ public class Application {
         System.out.println("6 of 11 completed");
         nomineeAge = getAge();
         System.out.println("7 of 11 completed");
-        nomineeNumber = getNumber();
+        getNumber();
         System.out.println("8 of 11 completed");
         nomineeGraduationDate = getGraduationDate();
         System.out.println("9 of 11 completed");
@@ -119,10 +119,19 @@ public class Application {
         return age;
     }
 
-    public String getNumber(){
+    public void getNumber(){
+        String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+        var statement = true;
+        while (statement) {
         System.out.println("Phone Number: ");
         var number = input.nextLine();
-        return number;
+        if (number.matches(pattern)) {
+            nomineeNumber = number;
+            statement = false;
+        } else {
+            System.out.println("Invalid phone number!");
+        }
+    }
     }
 
     public String getGraduationDate(){

@@ -86,10 +86,12 @@ public class Application {
     }
 
     public Boolean getIsNominated(){
+        File file = new File("src/nominations/"+nomineeName+".txt");
+        Boolean exists = file.exists();
         while (true) {
             System.out.println("Are you nominated?\n[1]--YES\n[2]--NO");
             var choice = input.nextLine();
-            if (choice.equals("1")){
+            if (choice.equals("1") && exists.equals(true)){
                 return true;
             } else if (choice.equals("2")) {
                 return false;
@@ -121,6 +123,7 @@ public class Application {
 
     public void getNumber(){
         String pattern = "\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}";
+        System.out.println("Valid Phone Number Formats:\n1234567890\n123-456-7890\n(123)456-7890\n(123)4567890");
         var statement = true;
         while (statement) {
         System.out.println("Phone Number: ");
@@ -135,7 +138,7 @@ public class Application {
     }
 
     public String getGraduationDate(){
-        System.out.println("Graduation Date: ");
+        System.out.println("Graduation Date (Example: May 2019): ");
         var date= input.nextLine();
         return date;
     }

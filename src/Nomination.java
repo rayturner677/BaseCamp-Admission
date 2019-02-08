@@ -93,7 +93,7 @@ public class Nomination {
     }
 
     public String getGraduationDate() {
-        System.out.println("Enter graduation date: ");
+        System.out.println("Enter graduation date (Example: May 2019): ");
         var date = input.nextLine();
         return date;
     }
